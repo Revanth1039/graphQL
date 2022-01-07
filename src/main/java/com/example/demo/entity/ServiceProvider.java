@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+enum ServiceProviderType {
+	  NOTARY,
+	  BROKER,
+	  CONSULTANT,
+	  ADVISOR
+	  }
 @Entity
 @Data
 @AllArgsConstructor
@@ -28,9 +36,14 @@ public class ServiceProvider {
 	private String avatar,company,name;
 	@JoinColumn(name ="provider_info",referencedColumnName = "zipcode")
 	@OneToOne(targetEntity = ServiceProviderInfo.class,cascade = CascadeType.ALL)
-	private ServiceProviderInfo serviceProviderInfo;
+	private ServiceProviderInfo serviceProviderInfo;	
+//	@Builder.Default
+//	private List<ServiceProviderType> types=new ArrayList<>();
 	@OneToMany(targetEntity = Case.class,cascade = CascadeType.ALL)
 	 @JoinColumn(name ="provider_id",referencedColumnName = "id")
 	private List<Case> cases;
+	@OneToMany(targetEntity = Task.class,cascade = CascadeType.ALL)
+	 @JoinColumn(name ="provider_id",referencedColumnName = "id")
+	private List<Task> tasks;
 	
 }

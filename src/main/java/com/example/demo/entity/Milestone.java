@@ -14,6 +14,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+enum MilestoneState {
+	  FINISHED,
+	  PENDING,
+	  NOT_AVAILABLE
+	}
 @Entity
 @Data
 @AllArgsConstructor
@@ -24,7 +30,8 @@ public class Milestone {
 	@Id
 	@Builder.Default
 	private String id= UUID.randomUUID().toString();
-	private String description,icon,name,state;
+	private String description,icon,name;
+	private MilestoneState state;
 	private Integer numberOfPendingTasks,numberOfTasks,progress;
 	@OneToMany(targetEntity = Task.class,cascade = CascadeType.ALL)
 	@JoinColumn(name ="milestone_id",referencedColumnName = "id")

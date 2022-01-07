@@ -8,24 +8,6 @@ type Query {
  getAllCases:[Case]
 }
 
-
-
-type Case{
-    id:String,
-    description:String,
-    endImage:String,
-    name:String,
-    numberOfMileStones:Int,
-    numberOfFinishedMilestones:Int,
-    numberOfPartners:Int,
-    numberOfTasks:Int,
-    numberOfServiceProviders:Int,
-    numberOfPendingTasks:Int,
-     milestones:[Milestone],
-    partners:[Partner],
-    serviceProviders:[ServiceProvider]  
-}
-
 type Mutation{
  addCase(id:String,
      description:String,
@@ -38,60 +20,186 @@ type Mutation{
     numberOfServiceProviders:Int,
     numberOfPendingTasks:Int,
      milestones:[MilestoneInput],
-    partners:[PartnerInput],serviceProviders:[ServiceProviderInput] ):Case,
+    partners:[ProfileInput],serviceProviders:[ServiceProviderInput] ):Case,
 }
 
-input ServiceProviderInput{
-    id:String,
-    avatar:String,
-    company:String,
-    name:String
+
+
+type Case{
+    id:ID!,
+    description:String,
+    endImage:String,
+    name:String,
+    numberOfMileStones:Int,
+    numberOfFinishedMilestones:Int,
+    numberOfPartners:Int,
+    numberOfTasks:Int,
+    state:CaseState,
+    numberOfServiceProviders:Int,
+    numberOfPendingTasks:Int,
+     milestones:[Milestone],
+    partners:[Profile],
+    serviceProviders:[ServiceProvider]  
 }
+
+enum CaseState {
+  PENDING
+  FINISHED
+}
+
+input  CaseInput{
+    id:ID!,
+    description:String,
+    endImage:String,
+    name:String,
+    numberOfMileStones:Int,
+    numberOfFinishedMilestones:Int,
+    numberOfPartners:Int,
+    numberOfTasks:Int,
+    state:CaseState,
+    numberOfServiceProviders:Int,
+    numberOfPendingTasks:Int,
+     milestones:[MilestoneInput],
+    partners:[ProfileInput],
+    serviceProviders:[ServiceProviderInput]  
+}
+
+type Milestone{
+    id:ID!,
+    description:String,
+    name:String,
+    icon:String,
+    state:MilestoneState,
+    numberOfTasks:Int,
+    numberOfPendingTasks:Int,
+    progress:Int,
+    Tasks:[Task]  
+}
+
+enum MilestoneState {
+  FINISHED
+  PENDING
+  NOT_AVAILABLE
+}
+
 input MilestoneInput{
     id:String,
     description:String,
     name:String,
     icon:String,
-    state:String,
+    state:MilestoneState,
     numberOfTasks:Int,
     numberOfPendingTasks:Int,
-    progress:Int  
-}
-input PartnerInput{
-    id:String,
-    email:String,
-    avatar:String,
-    firstName:String,
-    lastName:String,
-    numberOfNotifications:Int,
-    numberOfPendingTasks:Int,
-    numberOfOpenCases:Int    
-}
-type Milestone{
-    id:String,
-    description:String,
-    name:String,
-    icon:String,
-    state:String,
-    numberOfTasks:Int,
-    numberOfPendingTasks:Int,
-    progress:Int  
-}
-type Partner{
-    id:String,
-    email:String,
-    avatar:String,
-    firstName:String,
-    lastName:String,
-    numberOfNotifications:Int,
-    numberOfPendingTasks:Int,
-    numberOfOpenCases:Int    
+    progress:Int,
+    Tasks:[TaskInput]  
+     
 }
 
 type ServiceProvider{
+    id:ID!,
+    avatar:String,
+    company:String,
+    name:String,
+    types: [ServiceProviderType],
+    info: ServiceProviderInfo,
+    cases:[Case],
+    tasks:[Task] 
+}
+
+
+input ServiceProviderInput{
     id:String,
     avatar:String,
     company:String,
     name:String,
-    cases:[Case] 
+    types: [ServiceProviderType],  
+    info: ServiceProviderInfoInput,  
+    cases:[CaseInput],
+    tasks:[TaskInput] 
 }
+enum ServiceProviderType {
+  NOTARY
+  BROKER
+  CONSULTANT
+  ADVISOR
+}
+
+type ServiceProviderInfo {
+  address: String
+  ZipCode: String
+  Place: String
+  email: String
+  phoneNumber: String
+}
+
+input ServiceProviderInfoInput {
+  address: String
+  ZipCode: String
+  Place: String
+  email: String
+  phoneNumber: String
+}
+
+type Profile{
+    id:ID!,
+    email:String,
+    avatar:String,
+    firstName:String,
+    lastName:String,
+    numberOfNotifications:Int,
+    numberOfPendingTasks:Int,
+    numberOfOpenCases:Int,
+    tasks:[Task],
+    cases:[Case]   
+}
+
+input ProfileInput{
+    id:ID!,
+    email:String,
+    avatar:String,
+    firstName:String,
+    lastName:String,
+    numberOfNotifications:Int,
+    numberOfPendingTasks:Int,
+    numberOfOpenCases:Int,
+    tasks:[TaskInput],
+    cases:[CaseInput]       
+}
+
+
+type Task {
+  id: ID!
+  name: String
+  description: String
+  serviceProvider: ServiceProvider
+  state: TaskState
+  cases: Case
+  message: String
+  numberOfSteps: Int
+  numberOfStepsCompleted: Int
+  isApproved: Boolean
+}
+
+input TaskInput {
+  id: ID!
+  name: String
+  description: String
+  serviceProvider: ServiceProviderInput
+  state: TaskState
+  cases: CaseInput
+  message: String
+  numberOfSteps: Int
+  numberOfStepsCompleted: Int
+  isApproved: Boolean
+}
+
+enum TaskState {
+  FINISHED
+  PENDING
+  NOT_AVAILABLE
+}
+
+
+
+
+
