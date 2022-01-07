@@ -1,10 +1,11 @@
 package com.example.demo.entity;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,8 +38,8 @@ public class ServiceProvider {
 	@JoinColumn(name ="provider_info",referencedColumnName = "zipcode")
 	@OneToOne(targetEntity = ServiceProviderInfo.class,cascade = CascadeType.ALL)
 	private ServiceProviderInfo serviceProviderInfo;	
-//	@Builder.Default
-//	private List<ServiceProviderType> types=new ArrayList<>();
+	@ElementCollection
+	private List<ServiceProviderType> types;
 	@OneToMany(targetEntity = Case.class,cascade = CascadeType.ALL)
 	 @JoinColumn(name ="provider_id",referencedColumnName = "id")
 	private List<Case> cases;

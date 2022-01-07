@@ -25,10 +25,16 @@ dependencies {
     implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
 	// https://mvnrepository.com/artifact/com.graphql-java/graphql-java-tools
     implementation 'com.graphql-java-kickstart:graphql-java-tools:5.6.1'
-   
-   // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
    implementation 'javax.xml.bind:jaxb-api:2.2.10'
-// https://mvnrepository.com/artifact/com.graphql-java/graphql-java-servlet
+   // https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars
+// https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars
+// https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars
+implementation 'com.graphql-java:graphql-java-extended-scalars:1.0'
+
+
+   
+
+
 
 
    

@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+
 import java.util.List;
 import java.util.UUID;
 
@@ -30,15 +31,21 @@ public class Case {
 	@Id
 	@Builder.Default
 	private String id= UUID.randomUUID().toString();
+	
 	private String description,endImage,name;
+	
 	private Integer numberOfMileStones,numberOfFinishedMilestones,numberOfPartners,numberOfTasks,numberOfServiceProviders,numberOfPendingTasks;
+	
 	private CaseState state;
+	
 	 @OneToMany(targetEntity = Milestone.class,cascade = CascadeType.ALL)
 	 @JoinColumn(name ="case_id",referencedColumnName = "id")
 	private List<Milestone> milestones;
+	 
 	 @OneToMany(targetEntity = Profile.class,cascade = CascadeType.ALL)
 	 @JoinColumn(name ="case_id",referencedColumnName = "id")
 	private List<Profile> partners;
+	 
 	@OneToMany(targetEntity = ServiceProvider.class,cascade = CascadeType.ALL)
 	 @JoinColumn(name ="case_id",referencedColumnName = "id")
 	private List<ServiceProvider> serviceProviders;

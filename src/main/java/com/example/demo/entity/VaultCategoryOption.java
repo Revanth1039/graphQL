@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import java.util.List;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;

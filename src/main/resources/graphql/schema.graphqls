@@ -1,3 +1,4 @@
+
 schema {
  query: Query
  mutation:Mutation
@@ -13,6 +14,7 @@ type Mutation{
      description:String,
     endImage:String,
     name:String,
+    state:CaseState,    
     numberOfMileStones:Int,
     numberOfFinishedMilestones:Int,
     numberOfPartners:Int,
@@ -115,7 +117,7 @@ input ServiceProviderInput{
     types: [ServiceProviderType],  
     info: ServiceProviderInfoInput,  
     cases:[CaseInput],
-    tasks:[TaskInput] 
+    tasks:[TaskInput]
 }
 enum ServiceProviderType {
   NOTARY
@@ -198,6 +200,33 @@ enum TaskState {
   PENDING
   NOT_AVAILABLE
 }
+
+
+type Document {
+  title: String
+  file: String
+  type: DocumentType
+}
+
+enum DocumentType {
+  PDF
+  IMG
+}
+
+type Form {
+  title: String
+  description: String
+  canEdit: Boolean
+  state: FormState
+}
+
+enum FormState {
+  EMPTY
+  DRAFT
+  COMPLETE
+}
+
+
 
 
 

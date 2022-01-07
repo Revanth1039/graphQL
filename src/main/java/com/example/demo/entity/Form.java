@@ -1,18 +1,21 @@
 package com.example.demo.entity;
 
-import java.util.List;
+
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+enum FormState {
+	  EMPTY,
+	  DRAFT,
+	  COMPLETE,
+	}
 @Entity
 @Data
 @AllArgsConstructor
@@ -25,10 +28,12 @@ public class Form {
 	private boolean canEdit;
 
 	private String description;
-	
+	private FormState state;
 	@Id
 	private String title;
 
+//	@OneToMany(targetEntity = FormQuestion.class,cascade = CascadeType.ALL)
+//	@JoinColumn(name ="form_title",referencedColumnName = "title")
 //	private List<FormQuestion> questions;
 
 }
