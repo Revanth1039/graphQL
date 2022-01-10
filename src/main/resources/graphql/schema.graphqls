@@ -152,7 +152,8 @@ type Profile{
     numberOfPendingTasks:Int,
     numberOfOpenCases:Int,
     tasks:[Task],
-    cases:[Case]   
+    cases:[Case],
+    partners:[Profile]   
 }
 
 input ProfileInput{
@@ -165,7 +166,8 @@ input ProfileInput{
     numberOfPendingTasks:Int,
     numberOfOpenCases:Int,
     tasks:[TaskInput],
-    cases:[CaseInput]       
+    cases:[CaseInput],     
+    partners:[ProfileInput]   
 }
 
 

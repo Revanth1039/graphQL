@@ -59,7 +59,7 @@ public class CaseService {
 //    		System.out.println(caseRepository.findAll());
     		final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
     		Case cases = mapper.convertValue(data.getArguments(), Case.class);
-    		cases.setNumberOfMileStones(cases.getMilestones().size());
+//    		cases.setNumberOfMileStones(cases.getMilestones().size());
 //    		System.out.println(cases);
        		return caseRepository.save(cases);
     	};
