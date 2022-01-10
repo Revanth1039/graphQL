@@ -119,6 +119,7 @@ input ServiceProviderInput{
     cases:[CaseInput],
     tasks:[TaskInput]
 }
+
 enum ServiceProviderType {
   NOTARY
   BROKER
@@ -203,7 +204,6 @@ enum TaskState {
   NOT_AVAILABLE
 }
 
-
 type Document {
   title: String
   file: String
@@ -227,10 +227,3 @@ enum FormState {
   DRAFT
   COMPLETE
 }
-
-
-
-
-
-
-

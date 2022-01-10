@@ -1,11 +1,5 @@
 package com.example.demo.entity;
 
-
-
-
-
-
-
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor

@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +16,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "vault_table")
 
 public class Vault {
+
 	private List<VaultCategory> categories;
 }

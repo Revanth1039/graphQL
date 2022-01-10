@@ -10,10 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 enum FormState {
-	  EMPTY,
-	  DRAFT,
-	  COMPLETE,
-	}
+	EMPTY, DRAFT, COMPLETE,
+}
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -26,6 +25,7 @@ public class Form {
 	private boolean canEdit;
 
 	private String description;
+	
 	private FormState state;
 	@Id
 	private String title;

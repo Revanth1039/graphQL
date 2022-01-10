@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-
 import java.util.List;
 import java.util.UUID;
 
@@ -17,13 +16,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 enum ServiceProviderType {
-	  NOTARY,
-	  BROKER,
-	  CONSULTANT,
-	  ADVISOR
-	  }
+	NOTARY, BROKER, CONSULTANT, ADVISOR
+}
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -33,18 +29,23 @@ public class ServiceProvider {
 
 	@Id
 	@Builder.Default
-	private String id= UUID.randomUUID().toString();
-	private String avatar,company,name;
-	@JoinColumn(name ="provider_info",referencedColumnName = "zipcode")
-	@OneToOne(targetEntity = ServiceProviderInfo.class,cascade = CascadeType.ALL)
-	private ServiceProviderInfo serviceProviderInfo;	
+	private String id = UUID.randomUUID().toString();
+	
+	private String avatar, company, name;
+	
+	@JoinColumn(name = "provider_info", referencedColumnName = "zipcode")
+	@OneToOne(targetEntity = ServiceProviderInfo.class, cascade = CascadeType.ALL)
+	private ServiceProviderInfo serviceProviderInfo;
+	
 	@ElementCollection
 	private List<ServiceProviderType> types;
-	@OneToMany(targetEntity = Case.class,cascade = CascadeType.ALL)
-	 @JoinColumn(name ="provider_id",referencedColumnName = "id")
-	private List<Case> cases;
-	@OneToMany(targetEntity = Task.class,cascade = CascadeType.ALL)
-	 @JoinColumn(name ="provider_id",referencedColumnName = "id")
-	private List<Task> tasks;
 	
+	@OneToMany(targetEntity = Case.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "provider_id", referencedColumnName = "id")
+	private List<Case> cases;
+	
+	@OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "provider_id", referencedColumnName = "id")
+	private List<Task> tasks;
+
 }
