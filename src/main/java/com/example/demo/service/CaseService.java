@@ -56,16 +56,16 @@ public class CaseService {
     	
     	DataFetcher<Case> fetcher3 = data->{
 //    		Case cases=Case.builder().build();
-//    		System.out.println(caseRepository.findAll());
+    		System.out.println(caseRepository.findAll());
     		final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
     		Case cases = mapper.convertValue(data.getArguments(), Case.class);
     		cases.setNumberOfMileStones(cases.getMilestones().size());
 //    		System.out.println(cases);
        		return caseRepository.save(cases);
     	};
-    	
+ 
     	RuntimeWiring.newRuntimeWiring().scalar(ExtendedScalars.Date);
-		return RuntimeWiring.newRuntimeWiring().type("Query",
+		return RuntimeWiring.newRuntimeWiring().scalar(ExtendedScalars.Date).type("Query",
 				typeWriting -> typeWriting.dataFetcher("getCaseById", fetcher2).dataFetcher("getAllCases", fetcher1)).type("Mutation",
 						typeWriting -> typeWriting.dataFetcher("addCase", fetcher3)).build();		
 	}

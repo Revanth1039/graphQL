@@ -18,5 +18,4 @@ import lombok.NoArgsConstructor;
 
 public class Vault {
 	private List<VaultCategory> categories;
-
 }

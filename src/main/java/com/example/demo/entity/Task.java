@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import java.util.Date;
 import java.util.UUID;
@@ -35,12 +34,12 @@ public class Task {
 	private String name,description,message;
 	private Date date;
 	private Integer numberOfSteps,numberOfStepsCompleted;
-	private TaskState taskState ;
+	private TaskState state ;
 	private boolean isApproved;
 	@ManyToOne(targetEntity = ServiceProvider.class,cascade = CascadeType.ALL)
 	@JoinColumn(name ="provider_id",referencedColumnName = "id")
 	private ServiceProvider serviceProvider;
-	@OneToOne(targetEntity = Case.class,cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Case.class,cascade = CascadeType.ALL)
 	@JoinColumn(name ="case_id",referencedColumnName = "id")
 	private Case cases;
 	
