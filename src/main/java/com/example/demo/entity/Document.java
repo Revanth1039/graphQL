@@ -1,8 +1,5 @@
 package com.example.demo.entity;
 
-
-
-
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -13,11 +10,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 enum DocumentType {
-	  PDF,
-	  IMG
-	}
+	PDF, IMG
+}
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -27,7 +23,10 @@ public class Document {
 
 	@Id
 	private String title;
+	
 	private String file;
+	
 	private Date uploadedOn;
+	
 	private DocumentType type;
 }
