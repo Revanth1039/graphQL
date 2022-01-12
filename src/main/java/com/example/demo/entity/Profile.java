@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -51,8 +52,13 @@ public class Profile {
 	@JoinColumn(name ="profile_id",referencedColumnName = "id")
 	private List<Case> cases;
 	
+	@ManyToMany(targetEntity = Profile.class,cascade = CascadeType.ALL)
+	@JoinColumn(name ="partners",referencedColumnName = "id")
+	private List<Profile> partners;
+	
+	
 /*
- * Vault,notification,profile attributes pending
+ * Vault,notification attributes pending
  */
 	
 //	private List<Vault> vault;

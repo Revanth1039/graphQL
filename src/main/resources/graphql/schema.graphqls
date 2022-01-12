@@ -1,3 +1,4 @@
+scalar Date
 
 schema {
  query: Query
@@ -41,7 +42,8 @@ type Case{
     numberOfPendingTasks:Int,
      milestones:[Milestone],
     partners:[Profile],
-    serviceProviders:[ServiceProvider]  
+    serviceProviders:[ServiceProvider]
+
 }
 
 enum CaseState {
@@ -63,7 +65,7 @@ input  CaseInput{
     numberOfPendingTasks:Int,
      milestones:[MilestoneInput],
     partners:[ProfileInput],
-    serviceProviders:[ServiceProviderInput]  
+    serviceProviders:[ServiceProviderInput]
 }
 
 type Milestone{
@@ -152,7 +154,8 @@ type Profile{
     numberOfPendingTasks:Int,
     numberOfOpenCases:Int,
     tasks:[Task],
-    cases:[Case]   
+    cases:[Case],
+    partners:[Profile]   
 }
 
 input ProfileInput{
@@ -165,7 +168,8 @@ input ProfileInput{
     numberOfPendingTasks:Int,
     numberOfOpenCases:Int,
     tasks:[TaskInput],
-    cases:[CaseInput]       
+    cases:[CaseInput],     
+    partners:[ProfileInput]   
 }
 
 
@@ -180,6 +184,7 @@ type Task {
   numberOfSteps: Int
   numberOfStepsCompleted: Int
   isApproved: Boolean
+  date:Date
 }
 
 input TaskInput {
@@ -206,6 +211,7 @@ type Document {
   title: String
   file: String
   type: DocumentType
+  uploadedOn: Date
 }
 
 enum DocumentType {

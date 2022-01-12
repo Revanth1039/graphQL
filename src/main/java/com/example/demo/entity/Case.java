@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +36,7 @@ public class Case {
 	private String id= UUID.randomUUID().toString();
 	
 	private String description,endImage,name;
+	
 	
 	private Integer numberOfMileStones,numberOfFinishedMilestones,numberOfPartners,numberOfTasks,numberOfServiceProviders,numberOfPendingTasks;
 	
