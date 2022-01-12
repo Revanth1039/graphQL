@@ -23,33 +23,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "profile_table")
 public class Profile {
 
-	private String avatar;
-
-	private String email;
-
-	private String firstName;
+	private String avatar, email, firstName, lastName;
 
 	@Id
 	private String id;
 
-	private String lastName;
+	private Integer numberOfNotifications, numberOfOpenCases, numberOFPendingTasks;
 
-
-
-	private Integer numberOfNotifications;
-
-	private Integer numberOfOpenCases;
-
-	private Integer numberOFPendingTasks;
-
-	
 //	private List<Profile> partners;
-	@OneToMany(targetEntity = Task.class,cascade = CascadeType.ALL)
-	@JoinColumn(name ="profile_id",referencedColumnName = "id")
+	@OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "profile_id", referencedColumnName = "id")
 	private List<Task> tasks;
-	
-	@OneToMany(targetEntity = Case.class,cascade = CascadeType.ALL)
-	@JoinColumn(name ="profile_id",referencedColumnName = "id")
+
+	@OneToMany(targetEntity = Case.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "profile_id", referencedColumnName = "id")
 	private List<Case> cases;
 	
 	@ManyToMany(targetEntity = Profile.class,cascade = CascadeType.ALL)
@@ -63,6 +50,5 @@ public class Profile {
 	
 //	private List<Vault> vault;
 //	private Notification notifications;
-	
 
 }

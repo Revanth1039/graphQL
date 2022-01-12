@@ -17,5 +17,6 @@ public class ServiceProviderInfo {
 
 	@Id
 	private String zipCode;
-	private String place,address,email,phoneNumber;
+	
+	private String place, address, email, phoneNumber;
 }
